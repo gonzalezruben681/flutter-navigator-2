@@ -2,7 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 import '../models/product.dart';
-import '../routes/routes.dart';
+import '../my_app.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -41,16 +41,18 @@ class _HomeViewState extends State<HomeView> {
           final product = _list[index];
           return Card(
             child: InkWell(
-              onTap: () => Navigator.pushNamed(
-                context,
-                Routes.product,
-                arguments: product.id,
-              ),
+              onTap: () {
+                final myAppState = context.findAncestorStateOfType<MyAppState>();
+                myAppState?.delegate.setNewRoutePath(
+                  Uri.parse('/product/${product.id}'),
+                );
+              },
               child: Column(
                 children: [
                   AspectRatio(
                     aspectRatio: 16 / 9,
-                    child: Image.network(product.image),
+                    child: Image.network(
+                        'https://images.pexels.com/photos/2256137/pexels-photo-2256137.jpeg'),
                   ),
                   Text(
                     product.name,
