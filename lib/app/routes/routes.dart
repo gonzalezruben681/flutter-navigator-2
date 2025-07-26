@@ -1,6 +1,6 @@
 class Routes {
   Routes._();
 
-  static const home = '/';
-  static const product = '/product';
+  static const home = 'home';
+  static const product = 'product';
 }
