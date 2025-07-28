@@ -36,7 +36,16 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              GoRouter.of(context).goNamed(Routes.profile);
+            },
+            icon: const Icon(Icons.person),
+          ),
+        ],
+      ),
       body: ListView.builder(
         itemBuilder: (_, index) {
           final product = _list[index];
