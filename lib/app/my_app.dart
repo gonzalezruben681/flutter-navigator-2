@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../go_router/router.dart';
+import 'pages/splash_view.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -10,10 +11,38 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with RouterMixin {
+  bool _loading = true;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        _init();
+      },
+    );
+  }
+
+  Future<void> _init() async {
+    await Future.delayed(const Duration(seconds: 1), () {
+      // Simulate some initialization work
+      print('Initialization complete');
+    });
+    if (mounted) {
+      setState(() {
+        _loading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: router,
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      child: _loading
+          ? const SplashView()
+          : MaterialApp.router(
+              routerConfig: router,
+            ),
     );
   }
 }

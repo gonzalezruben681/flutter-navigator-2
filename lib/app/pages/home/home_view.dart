@@ -2,8 +2,8 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../models/product.dart';
-import '../routes/routes.dart';
+import '../../models/product.dart';
+import '../../routes/routes.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -35,18 +35,9 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {
-              GoRouter.of(context).goNamed(Routes.profile);
-            },
-            icon: const Icon(Icons.person),
-          ),
-        ],
-      ),
-      body: ListView.builder(
+    return Container(
+      color: Colors.white,
+      child: ListView.builder(
         itemBuilder: (_, index) {
           final product = _list[index];
           return Card(

@@ -11,14 +11,18 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: TextButton(
+      appBar: AppBar(
+        backgroundColor: Colors.redAccent,
+      ),
+      body: Center(
+        child: TextButton(
           onPressed: () {
             context.read<SessionController>().setSignedIn(false);
-            GoRouter.of(context).goNamed(
-                Routes.signIn); 
+            context.goNamed(Routes.signIn);
           },
-          child: const Text('Sign Out')),
+          child: const Text('Sign out'),
+        ),
+      ),
     );
   }
 }

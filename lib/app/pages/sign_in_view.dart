@@ -19,7 +19,7 @@ class SignInView extends StatelessWidget {
           onPressed: () {
             context.read<SessionController>().setSignedIn(true);
             GoRouter.of(context)
-                .pushReplacement(callbackUrl); // Navigate to home after sign-in
+                .go(callbackUrl); // Navigate to home after sign-in
           },
           child: const Text('Iniciar Sesión'),
         ),
